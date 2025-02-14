@@ -22,7 +22,7 @@ def imprimir_transformacion_consola(OEM):
             if contador % 2 == 0:
                 OEM_pulida += " \n--> "
             else:
-                OEM_pulida += ""
+                OEM_pulida += ''
             contador+=1
         else:
             OEM_pulida += char
@@ -74,11 +74,11 @@ def Operacion_fila(fila_fija, fila_iter, indice_columna, indice_fila, iter):
             pivote = int(pivote/pivote_abs)
             a_cero = int(a_cero/a_cero_abs)
             #OJO: indice_fila para imprimir sobre la flechita (latex)
-            operacion_latex=f"{abs(pivote) if abs(pivote) != 1 else ""}f_{iter+1} {signo_operacion} {abs(a_cero)}f_{indice_fila+1} \\\\"
+            operacion_latex=f"{abs(pivote) if abs(pivote) != 1 else ''}f_{iter+1} {signo_operacion} {abs(a_cero)}f_{indice_fila+1} \\\\"
         elif pivote == a_cero:
             operacion_latex=f"f_{iter+1} {signo_operacion} f_{indice_fila+1} \\\\"
         elif pivote == 1:
-            operacion_latex=f"f_{iter+1} {signo_operacion} {abs(a_cero) if abs(a_cero) != 1 else ""}f_{indice_fila+1} \\\\"
+            operacion_latex=f"f_{iter+1} {signo_operacion} {abs(a_cero) if abs(a_cero) != 1 else ''}f_{indice_fila+1} \\\\"
         else:
             operacion_latex=f"{abs(pivote)}f_{iter+1} {signo_operacion} f_{indice_fila+1} \\\\"
     return operacion_latex, pivote, a_cero
@@ -110,6 +110,7 @@ def Buscar_pivote(matriz, indice_fila, indice_columna):
         else:
             matriz[indice_fila], matriz[vector_columna_auxiliar[indice_fila:].index(1)+indice_fila] = matriz[vector_columna_auxiliar[indice_fila:].index(1)+indice_fila], matriz[indice_fila]
             hubo_intercambio = True
+            print(f"\n--> f_{vector_columna_auxiliar.index(1)+1} x f_{indice_fila+1}\n") ###CONSOLA INTERCAMBIO
             Latex_intercambio(vector_columna_auxiliar.index(1)+1, indice_fila+1)
     elif vector_columna_auxiliar[indice_fila] != 0:  #Con tal que no sea cero no hay problema
         hay_pivote = True
@@ -118,9 +119,9 @@ def Buscar_pivote(matriz, indice_fila, indice_columna):
             if vector_columna_auxiliar[i] != 0:
                 matriz[indice_fila], matriz[i] = matriz[i], matriz[indice_fila] #Intercambiando Columnas -> se requiere latex
                 hay_pivote = True
-                print(f"\n--> f{indice_fila} x f{i}\n") ###CONSOLA INTERCAMBIO
+                print(f"\n--> f_{i+1} x f_{indice_fila+1}\n") ###CONSOLA INTERCAMBIO
                 hubo_intercambio=True
-                Latex_intercambio(indice_fila+1, i+1)
+                Latex_intercambio(i+1, indice_fila+1)
                 break
     return hay_pivote, hubo_intercambio        
 
