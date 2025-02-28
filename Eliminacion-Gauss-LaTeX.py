@@ -177,6 +177,10 @@ try:
     n_columnas = int(input("Ingrese el número de columnas: "))
     if es_ampliada[0]:
         n_columnas_ampliacion = int(input("Ingrese el número de columnas de la matriz ampliación (EL NÚMERO DE FILAS NECESARIAMENTE SERÁ EL MISMO): "))
+        if n_columnas_ampliacion == 0:
+            print("~~ Ha ingresado 0 como el numero de columnas de la matriz ampliacion. Se procederá con una matriz SIN AMPLIACION. ~~")
+            es_ampliada[0] = False
+    
     print("Ingrese los componentes de la matriz A "+str(n_filas)+"x"+str(n_columnas))
 
     for i in range(n_filas):
